@@ -40,7 +40,7 @@ function App() {
     setGridLength(gridSize);
   };
 
-  // Reshuffle whenever theme or grid size changes
+
   useEffect(() => {
     shuffleAndRestart();
   }, [theme, gridLength]);

@@ -22,7 +22,11 @@ function Game({ size, shuffledArray }) {
     setFlipped([]);
     setMatched([]);
     setCurrentScore(0);
-    setTimeLeft(60);
+    if(size == 2) {
+      setTimeLeft(30);
+    } else if(size == 4) {
+      setTimeLeft(60);
+    } else setTimeLeft(120);
     setIsGameOver(false);
     revealCards();
     startTimer();
@@ -61,29 +65,34 @@ function Game({ size, shuffledArray }) {
   const handleTileClick = (index) => {
     click.play();
     if (isGameOver || flipped.includes(index) || matched.includes(index)) return;
-
+  
     const newFlipped = [...flipped, index];
     setFlipped(newFlipped);
-
-    if (newFlipped.length >= 2) {
+  
+    if (newFlipped.length === 2) {
       const [first, second] = newFlipped;
-      if (first !== second && shuffledArray[first] === shuffledArray[second]) {
+  
+      if (shuffledArray[first] === shuffledArray[second]) {
         const newMatched = [...matched, first, second];
         setMatched(newMatched);
-        setCurrentScore(currentScore + 1);
-
+        setCurrentScore((prevScore) => prevScore + 1);
+  
         if (newMatched.length === shuffledArray.length) {
-          setIsGameOver(true);
           victory.play();
+          setIsGameOver(true);
           clearInterval(timerRef.current);
           updateBestScore();
         }
       }
+  
       setTimeout(() => {
         setFlipped([]);
       }, 1000);
     }
   };
+  
+
+  
 
   const restartGame = () => {
     resetGame();

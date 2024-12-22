@@ -110,3 +110,27 @@
     transform: rotateY(180deg);
   }
   
+  .game-over-overlay {
+    display: flex;
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+  }
+  
+  .game-over-overlay h2 {
+    color: white;
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  
+  .game-over-overlay button {
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
